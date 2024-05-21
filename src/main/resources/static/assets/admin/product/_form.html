@@ -1,0 +1,101 @@
+<div class="panel panel-default">
+    <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded text-center fw-bolder">Thêm Sản Phẩm</div>
+    <div class="text-center" ng-show="formProduct.id">
+        <img src="{{'/files/'+formProduct.img}}" class="rounded" style="height: 400px; width:400px;" alt="...">
+    </div>
+    <div class="panel-body mt-3">
+        <div class="row">
+            <div class="col-sm-2 text-center">
+                
+            </div>
+            <div class="col-sm-8 shadow-lg p-3 mb-5 bg-body-tertiary rounded fw-bolder">
+                <div class="row">
+                    <div class="form-group col-sm-6 p-2">
+                        <div>Name</div>
+                        <input ng-model="formProduct.name" class="form-control">
+                    </div>
+                    <div class="form-group col-sm-6 p-2">
+                        <div>Thể Loại</div>
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <select ng-model="formProduct.productCategory.id" class="form-control">
+                                    <option ng-repeat="ctgsf in categories" ng-value="ctgsf.id">
+                                        {{ctgsf.productCategoryName}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <button class="btn fw-bold btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#CategoryModal">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6 p-2">
+                        <div>Image</div>
+                        <input class="form-control" type="file" multiple
+                            onchange="angular.element(this).scope().imageChanged(this.files)" />
+                    </div>
+                    <div class="form-group col-sm-6 p-2">
+                        <div>Vật liệu</div>
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <select ng-model="formProduct.material.materialsId" class="form-control">
+                                    <option ng-repeat="m in materials" ng-value="m.materialsId">{{m.materialName}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <button class="btn fw-bold btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#MaterialModal">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6 p-2">
+                        <div>Màu sắc</div>
+                        <ol class="list-group text-center" ng-repeat="cl in colorlist">
+                            <li class="list-group-item">
+                                <p class="float-start">{{cl.color.colorName}}</p>
+                                <button type="button" class="btn-close float-end" ng-click="removeColorlist($index)" aria-label="Close"></button>
+                                <img src="{{'/files/'+cl.color.img}}" style="height: 50px; width: 50px;" alt="">
+                            </li>
+                        </ol>
+                        <button class="btn mt-2 fw-bold btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#ColorModal">ADD</button>
+                    </div>
+                    <div class="form-group col-sm-6 p-2">
+                        <div>Kích Thước</div>
+                        <ol class="list-group" ng-repeat="dms in dimensionlist">
+                            
+                            <li class="list-group-item mt-2">
+                                <button type="button" class="btn-close float-end" ng-click="removedimensionlist($index)" aria-label="Close"></button>
+                                <p class="text-start">{{dms.dimension.size}}</p>
+                                <p class="text-start">Giá</p>
+                                <input class="form-control float-end" ng-model="dms.price" type="number" >
+                            </li>
+                        </ol>
+                        <button class="btn mt-2 fw-bold btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#DimensionModal">ADD</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2 text-center">
+                
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer text-center">
+        <button ng-click="create()" ng-disabled="formProduct.id" class="btn btn-primary">
+            <b class="glyphicon glyphicon-plus"></b> Thêm
+        </button>
+        <button ng-click="update()" ng-disabled="!formProduct.id" class="btn btn-success">
+            <b class="glyphicon glyphicon-save"></b> Sửa
+        </button>
+        <button ng-click="reset()" class="btn btn-info">
+            <b class="glyphicon glyphicon-refresh"></b> Reset
+        </button>
+    </div>
+</div>

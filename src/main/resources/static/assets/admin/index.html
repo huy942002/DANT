@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+</head>
+
+<body ng-app="Myapp">
+  <div class="container-fluid">
+    <div class="row">
+      <div>
+        <nav class="navbar navbar-dark bg-dark fixed-top">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Nội Thất Đăng Đạo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+              aria-labelledby="offcanvasDarkNavbarLabel">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                  aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#!">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      Dropdown
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li>
+                        <hr class="dropdown-divider">
+                      </li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <form class="d-flex mt-3" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <br>
+      <br>
+      <br>
+      <div class="">
+        <div ng-view></div>
+      </div>
+      <div class="modal fade" id="CategoryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Thể Loại</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form name="myForm">
+                <p>Tên thể loại</p>
+                <input class="form-control" type="text" ng-model="ctg.productCategoryName">
+                <p class="mt-3">Loại thể loại</p>
+                <select ng-model="ctg.totalCategory" class="form-control mt-3">
+                  <option ng-repeat="t in totalcategories" ng-value="t">{{t.name}}
+                  </option>
+                </select>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button pe="submit" class="btn btn-primary" ng-click="createctgl($event)">Thêm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--      Vật liệu-->
+      <div class="modal fade" id="MaterialModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Vật Liệu</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form name="myForm">
+                <div>Tên</div>
+                <input class="form-control" type="text" ng-model="mtrl.materialName">
+                <div class="">
+                  <div>Thể loại vật liệu</div>
+                  <div class="row">
+                    <div class="col-sm-10">
+                      <select ng-model="mtrl.materialCategory.id" class="form-control">
+                        <option ng-repeat="m in materialCategorys" ng-value="m.id">{{m.materialCategoryName}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-sm-2">
+                      <button class="btn fw-bold btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#materialCategoryModal">+</button>
+                    </div>
+                  </div>
+                </div>
+                <div>Giá Tiền</div>
+                <input type="number" name="" class="form-control" ng-model="mtrl.price">
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button pe="submit" class="btn btn-primary" ng-click="creatematerial($event)">Thêm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Thể loại vật liệu-->
+      <div class="modal fade" id="materialCategoryModal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Thể Loại Vật Liệu</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form name="myForm">
+                <input class="form-control" type="text" ng-model="mtrlctg.materialCategoryName">
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button pe="submit" class="btn btn-primary" ng-click="creatematerialCategorys($event)">Thêm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Add color      -->
+      <div class="modal fade" id="ColorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Màu Sắc</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Thêm Mới
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <form name="myForm">
+                        <div>Tên</div>
+                        <input class="form-control m-3" type="text" ng-model="colorform.colorName">
+                        <div>Image</div>
+                        <input class="form-control" type="file" multiple
+                          onchange="angular.element(this).scope().imageChanged(this.files)" />
+                        <br>
+                      </form>
+                      <button type="submit" class="btn btn-primary m-3" ng-click="createcolor($event)">Thêm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="table-responsive-xxl">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Tên</th>
+                      <th>Img</th>
+                      <th>Thao tác</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="c in colors">
+                      <td>{{c.colorName}}</td>
+                      <td><img src="{{'/files/'+c.img}}" style="height: 50px; width: 50px;" alt=""></td>
+                      <td>
+                        <button type="button" class="btn btn-light" ng-click="deletecolor(c)">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-trash3" viewBox="0 0 16 16">
+                            <path
+                              d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                          </svg></button>
+                      </td>
+                      <td>
+                        <input type="checkbox" ng-model="c.Selected">
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <a class="btn btn-primary" ng-click="addcolorlist()">ADD</a>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="DimensionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Màu Sắc</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Thêm Mới
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <form name="myForm">
+                        <div>Kích Thước</div>
+                        <input class="form-control m-3" type="text" ng-model="dimensionform.size">
+                        <br>
+                      </form>
+                      <button type="submit" class="btn btn-primary m-3" ng-click="createdimension($event)">Thêm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="table-responsive-xxl">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Kích Thước</th>
+                      <th>Thao tác</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="ds in dimensions">
+                      <td>{{ds.size}}</td>
+                      <td>
+                        <input type="checkbox" ng-model="ds.Selected">
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <a class="btn btn-primary" ng-click="adddimensionslist()">ADD</a>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="/assets/js/angular.min.js"></script>
+  <script src="/assets/js/angular-route.js"></script>
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/popper.min.js"></script>
+  <script src="/assets/admin/js/admin-app.js"></script>
+  <script src="/assets/admin/js/product-ctrl.js"></script>
+  <script src="/assets/admin/js/category-ctrl.js"></script>
+  <script src="/assets/admin/js/color-ctrl.js"></script>
+  <script src="/assets/admin/js/material-ctrl.js"></script>
+  <script src="/assets/admin/js/dimension-ctrl.js"></script>
+</body>
+
+</html>
