@@ -1,7 +1,7 @@
 app.controller("color-ctrl", function ($rootScope, $http) {
     $rootScope.createcolor = function (event) {
         $rootScope.colorform.img = angular.copy($rootScope.nameFile);
-        var color = angular.copy($rootScope.colorform);
+        let color = angular.copy($rootScope.colorform);
         $http.post('/rest/upload/images', form, {
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
@@ -23,7 +23,7 @@ app.controller("color-ctrl", function ($rootScope, $http) {
 
     $rootScope.deletecolor = function (item) {
         $http.delete('/rest/color/' + item.id).then(resp => {
-            var index = $scope.colors.findIndex(c => c.id == item.id);
+            let index = $scope.colors.findIndex(c => c.id == item.id);
             $rootScope.colors.splice(index, 1);
             // $scope.reset();
             // alert("Thêm mới loại sản phẩm thành công!");

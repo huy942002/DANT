@@ -1,7 +1,7 @@
 app.controller("material-ctrl",function ($http,$rootScope) {
      //    Thêm mới vật liệu
      $rootScope.creatematerial = function (event) {
-        var material = angular.copy($rootScope.mtrl);
+        let material = angular.copy($rootScope.mtrl);
         $http.post(`/rest/material`, material).then(resp => {
             $rootScope.materials.push(resp.data);
             // $scope.reset();
@@ -13,7 +13,7 @@ app.controller("material-ctrl",function ($http,$rootScope) {
     }
     //    Thêm mới thể loại vật liệu
     $rootScope.creatematerialCategorys = function () {
-        var materialCategory = angular.copy($rootScope.mtrlctg);
+        let materialCategory = angular.copy($rootScope.mtrlctg);
         $http.post(`/rest/materialCategory`, materialCategory).then(resp => {
             $rootScope.materialCategorys.push(resp.data);
             // $rootScope.reset();

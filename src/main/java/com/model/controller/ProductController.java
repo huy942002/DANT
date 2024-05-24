@@ -2,9 +2,7 @@ package com.model.controller;
 
 import com.model.DAO.DimensionDetailDAO;
 import com.model.DTO.ProductPriceDTO;
-import com.model.entities.DimensionDetail;
 import com.model.entities.Product;
-import com.model.service.DimensionDetailService;
 import com.model.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
