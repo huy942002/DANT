@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.model</groupId>
-	<artifactId>Assiment-huynhph17290</artifactId>
+	<artifactId>DANT</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Assiment-huynhph17290</name>
-	<description>Assiment-huynhph17290</description>
+	<name>DANT</name>
+	<description>DANT</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
