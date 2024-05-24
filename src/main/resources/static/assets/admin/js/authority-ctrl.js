@@ -23,7 +23,7 @@
 	}
 
 	$scope.authority_changed = function(acc, role){
-		var authority = $scope.authority_of(acc, role);
+		let authority = $scope.authority_of(acc, role);
 		if(authority){ // đã cấp quyền => thu hồi quyền (xóa)
 			$scope.revoke_authority(authority);
 		}
@@ -46,7 +46,7 @@
 	// Xóa authority
 	$scope.revoke_authority = function(authority){
 		$http.delete(`/rest/authorities/${authority.id}`).then(resp => {
-			var index = $scope.authorities.findIndex(a => a.id == authority.id);
+			let index = $scope.authorities.findIndex(a => a.id == authority.id);
 			$scope.authorities.splice(index, 1);
 			alert("Thu hồi quyền sử dụng thành công");
 		}).catch(error => {

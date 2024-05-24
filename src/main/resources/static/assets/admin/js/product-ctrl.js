@@ -19,7 +19,7 @@ app.controller("product-ctrl", function ($rootScope, $http, $routeParams) {
     }
     $rootScope.nameFile = '';
     // upload ảnh
-    var form = new FormData();
+    let form = new FormData();
     $rootScope.imageChanged = function (files) {
         form.append('file', files[0]);
         $rootScope.nameFile = angular.copy(files[0].name);
@@ -54,7 +54,7 @@ app.controller("product-ctrl", function ($rootScope, $http, $routeParams) {
             $rootScope.colors.forEach(element => {
                 if (element.Selected) {
                     $rootScope.coloritemlist.color = angular.copy(element);
-                    var item = angular.copy($rootScope.coloritemlist);
+                    let item = angular.copy($rootScope.coloritemlist);
                     $rootScope.colorlist.push(item);
                     console.log($rootScope.colorlist);
                 };
@@ -63,8 +63,8 @@ app.controller("product-ctrl", function ($rootScope, $http, $routeParams) {
             $rootScope.colors.forEach(element => {
                 if (element.Selected) {
                     $rootScope.coloritemlist.color = angular.copy(element);
-                    var item = angular.copy($rootScope.coloritemlist);
-                    var count = 0;
+                    let item = angular.copy($rootScope.coloritemlist);
+                    let count = 0;
                     $rootScope.colorlist.forEach(element => {
                         if (element.color.id == item.color.id) {
                             return
@@ -85,9 +85,9 @@ app.controller("product-ctrl", function ($rootScope, $http, $routeParams) {
     //    Thêm mới sản phẩm
     $rootScope.create = function (event) {
         $rootScope.formProduct.img = angular.copy($rootScope.nameFile);
-        var item = angular.copy($rootScope.formProduct);
-        var itemColor = angular.copy($rootScope.colorlist);
-        var itemdimension = angular.copy($rootScope.dimensionlist);
+        let item = angular.copy($rootScope.formProduct);
+        let itemColor = angular.copy($rootScope.colorlist);
+        let itemdimension = angular.copy($rootScope.dimensionlist);
         $http.post('/rest/upload/images', form, {
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
@@ -112,7 +112,7 @@ app.controller("product-ctrl", function ($rootScope, $http, $routeParams) {
 
     $rootScope.editProduct = function (index) {
         $rootScope.formProduct = angular.copy($rootScope.products[index]);
-        var item = angular.copy($rootScope.products[index]);
+        let item = angular.copy($rootScope.products[index]);
         console.log($rootScope.formProduct);
         console.log($rootScope.nameFile);
         $http.get("/rest/colordetail/" + item.id).then(resp => {
@@ -126,9 +126,9 @@ app.controller("product-ctrl", function ($rootScope, $http, $routeParams) {
 
     $rootScope.update = function () {
         $rootScope.formProduct.status = angular.copy($rootScope.status);
-        var item = angular.copy($rootScope.formProduct);
-        var itemColor = angular.copy($rootScope.colorlist);
-        var itemdimension = angular.copy($rootScope.dimensionlist);
+        let item = angular.copy($rootScope.formProduct);
+        let itemColor = angular.copy($rootScope.colorlist);
+        let itemdimension = angular.copy($rootScope.dimensionlist);
         if ($rootScope.nameFile == '') {
             $http.put(`/rest/products`, {
                 product: item,
@@ -194,7 +194,7 @@ app.controller("product-ctrl", function ($rootScope, $http, $routeParams) {
             $rootScope.dimensionlist.splice(0, $rootScope.dimensionlist.length);
             if (element.Selected) {
                 $rootScope.dimensionitemlist.dimension = angular.copy(element);
-                var item = angular.copy($rootScope.dimensionitemlist);
+                let item = angular.copy($rootScope.dimensionitemlist);
 
                 $rootScope.dimensionlist.push(item);
                 console.log($rootScope.dimensionlist);
@@ -203,9 +203,9 @@ app.controller("product-ctrl", function ($rootScope, $http, $routeParams) {
         } else {
             $rootScope.dimensions.forEach(element => {
                 if (element.Selected) {
-                    var count = 0;
+                    let count = 0;
                     $rootScope.dimensionitemlist.dimension = angular.copy(element);
-                    var item = angular.copy($rootScope.dimensionitemlist);
+                    let item = angular.copy($rootScope.dimensionitemlist);
                     $rootScope.dimensionlist.forEach(element => {
                         if (element.dimension.id == item.dimension.id) {
                             return

@@ -1,6 +1,5 @@
 package com.model.DAO;
 
-import com.model.entities.ColorDetail;
 import com.model.entities.DimensionDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

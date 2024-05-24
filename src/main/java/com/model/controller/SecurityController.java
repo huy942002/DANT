@@ -4,7 +4,6 @@ import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
@@ -42,7 +41,7 @@ public class SecurityController {
     }
 
     @CrossOrigin("*")
-    @ResponseBody
+    
     @RequestMapping("/rest/security/authentication")
     public Object getAuthentication(HttpSession session) {
         return session.getAttribute("authentication");

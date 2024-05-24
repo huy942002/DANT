@@ -65,7 +65,15 @@ app.run(function ($http, $rootScope) {
             material: {},
             productCategory: {}
         };
-    }
+    };
+
+    $rootScope.bannerform = {
+        id: 0,
+        title: '',
+        imgage: '',
+        url: '',
+        state: ''
+    };
 
 
     $rootScope.initialize = function () {
@@ -96,6 +104,9 @@ app.run(function ($http, $rootScope) {
         // load kích thước
         $http.get("/rest/dimension").then(resp => {
             $rootScope.dimensions = resp.data;
+        });
+        $http.get("/rest/banner").then(resp => {
+            $rootScope.banner = resp.data;
         });
         // $rootScope.reset();
     }
